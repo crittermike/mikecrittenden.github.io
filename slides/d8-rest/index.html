@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Building a RESTful Web Service on Drupal 8 using only a mouse.</title>
+
+    <meta name="description" content="A quick look at the common API functions you should already be using in Drupal 8!">
+    <meta name="author" content="Mike Crittenden">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="phase2/phase2.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section class="front branding-front">
+          <h1>Building a RESTful Web Service (and other cool things) on Drupal 8 using only a mouse.</h1>
+          <p>
+            <small><a href="http://mikecr.it">Mike Crittenden</a> / <a href="http://twitter.com/mcrittenden">@mcrittenden</a></small>
+          </p>
+          <!--
+          <p>
+            <small>http://brightplumbox.com/d8apifuncnyccamp2014/#/</small>
+          </p>
+          -->
+        </section>
+
+        <section>
+        <h2>Roll Call</h2>
+        <ol>
+          <li class="fragment">I have heard of Drupal</li>
+          <li class="fragment">I have seen or used Drupal in some way</li>
+          <li class="fragment">I have written front end code for Drupal</li>
+          <li class="fragment">I have written back end code for Drupal</li>
+          <li class="fragment">I have played with Drupal 8 or kept up with its development.</li>
+          <li class="fragment">I am Ryan Szrama</li>
+        </ol>
+        </section>
+
+        <section>
+          <section>
+            <h1>Why????!!!!111oneone</h1>
+          </section>
+          <section>
+            <h2>Drupal is slow!</h2>
+            <p>
+              <img src="http://theroadtothehorizon.net/photo/drupalsnail.jpg" />
+            </p>
+          </section>
+          <section>
+            <h2>Drupal is ugly!</h2>
+            <p>
+              <img src="http://thanhsiang.org/faqing/files/D6theme.jpg" />
+            </p>
+          </section>
+          <section>
+            <h2>Drupal is bloated!</h2>
+            <p>
+              <img src="http://img143.imageshack.us/img143/8242/picture1xn7.png" />
+            </p>
+          </section>
+          <section>
+            <h2>Drupal is in love with the GUI!</h2>
+            <p>
+              <img src="http://24.media.tumblr.com/tumblr_m7ca46mpli1qdk3y4o1_400.jpg" />
+            </p>
+          </section>
+          <section>
+            <h2>Drupal is hard to learn!</h2>
+            <p>
+              <img src="http://cdn.sixrevisions.com/0372-02_cms_learning_curve.jpg" />
+            </p>
+          </section>
+          <section>
+            <h2>Drupal is just the worst!</h2>
+            <p>
+              <img src="http://johannabates.com/sites/default/files/sites/default/files/cry_drupal.thumbnail.jpg" />
+            </p>
+          </section>
+          <section>
+            <h2>Yes, you're right.</h2>
+            <h3 class="fragment">But...</h3>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Drupal does all your work for you!</h2>
+            <img src="http://cdn.business2community.com/wp-content/uploads/2013/04/Drupal-Installation1.png" />
+          </section>
+          <section>
+            <h2>Where's the challenge? Where are the hard problems?</h2>
+            <img class="fragment" src="http://vim.sexy/img/Vimlogo.svg" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Drupal 8</h1>
+          </section>
+          <section>
+            <h2>Configuration Management</h2>
+            <p>Or, BURN FEATURES BURN!</p>
+          </section>
+          <section>
+            <h2>Twig</h2>
+            <pre>
+              <code data-trim contenteditable>
+<main id="content" class="clearfix" role="main">
+  <div class="visually-hidden"><a id="main-content"></a></div>
+  {% if messages %}
+    <div id="console" class="clearfix">{{ messages }}</div>
+  {% endif %}
+  {% if page.help %}
+    <div id="help">
+      {{ page.help }}
+    </div>
+  {% endif %}
+  {% if action_links %}
+    <ul class="action-links">
+      {{ action_links }}
+    </ul>
+  {% endif %}
+  {{ page.content }}
+</main>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Edit In Place</h2>
+            <p>Yes, Drupal finally reached 2007 and is shipping with a WYSIWYG.</p>
+            <img src="https://drupal.org/files/edit_polish_round_4_ref-2.png" />
+          </section>
+          <section>
+            <h2>Mobile Ready Administration</h2>
+            <img src="http://wayneeaker.com/sites/default/files/d8talk/img/mobile-toolbar-d8.png" />
+          </section>
+          <section>
+            <h2>Translation Interface</h2>
+            <img src="http://i.imgur.com/CvLmkou.png" />
+          </section>
+          <section>
+            <h2>Markup That Doesn't Suck</h2>
+            <img src="http://i.imgur.com/MFf2G.jpg" />
+          </section>
+          <section>
+            <h2>Built-In Web Services</h2>
+            <img src="http://drupalize.me/sites/default/files/blog_post_images/post_error.png" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Building a RESTful API on D8</h2>
+          </section>
+          <section>
+            <h2>Enable the modules.</h2>
+          </section>
+          <section>
+            <h2>Start doing stuff.</h2>
+          </section>
+          <section>
+            <h2>Get fancy!</h2>
+            <pre>
+              <code data-trim contenteditable>
+resources:
+  entity:node:
+    GET:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+    POST:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+    PATCH:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+    DELETE:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+              </code>
+            </pre>
+        <p>Edit me!</p>
+
+          </section>
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'phase2/branding.js', async: true, condition: function() {return !!document.body.classList; }}
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
